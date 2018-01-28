@@ -7,17 +7,16 @@ function gamma(n) {
 	n *= i;
     }
     return n;
- }
+}
 
 // beta function
 function beta(a, b) {
-    return gamma(a)*gamma(b)/gamma(a + b)
+    return gamma(a)*gamma(b)/gamma(a + b);
 }
 
-// flip coin function
+// coin flip function
 function flip_coin(Pi, a, b) {
-    var prob = Math.random();
-
+    prob = Math.random();
     if (prob < Pi) {
 	return [a + 1, b];
     }
@@ -33,14 +32,16 @@ var x = d1['x'];
 var p = d1['p'];
 var params = d2['params'];
 
-// update exponent
-var updated_params = flip_coin(0.75, params[0], params[1])
-var a = params[0];
-var b = params[1];
+// update shape parameters
+var updated_params = flip_coin(params[0], params[1], params[2]);
+params[1] = updated_params[0];
+params[2] = updated_params[1];
+var a = params[1];
+var b = params[2];
 
 // update probability
 for (i = 0; i < x.length; i++) {
-    p[i] = Math.pow(x[i], a - 1)*Math.pow(1 - x[i], b - 1)/beta(a, b)
+    p[i] = Math.pow(x[i], a - 1)*Math.pow(1 - x[i], b - 1)/beta(a, b);
 }
 
 // emit update to data sources
