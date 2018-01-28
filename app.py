@@ -17,6 +17,7 @@ def index():
 
 @app.route('/plot', methods=['POST'])
 def plot():
+    # get probability from user input
     app.vars['probability'] = float(request.form['probability'])
     script, div = create_plot(app.vars['probability'])
 
