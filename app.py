@@ -18,8 +18,10 @@ def index():
 @app.route('/plot', methods=['POST'])
 def plot():
     app.vars['probability'] = float(request.form['probability'])
-    script, div = create_plot(Pi=app.vars['probability'])
-    return render_template('plot.html', Pi=app.vars['probability'], script=script, div=div)
+    script, div = create_plot(app.vars['probability'])
+
+    return render_template('plot.html', probability=app.vars['probability'],
+                           script=script, div=div)
 
 if __name__ == '__main__':
     app.run(port=33507, debug=True)
