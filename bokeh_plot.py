@@ -6,7 +6,6 @@
 # 6.) clean imports
 
 import numpy as np
-import random
 
 from bokeh.embed import components
 from bokeh.layouts import column
