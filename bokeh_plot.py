@@ -1,17 +1,15 @@
 # TO DO:
-# 1.) add area under curve
 # 2.) add updated heads and tails
 # 3.) add stats
-# 5.) add comments!
 # 6.) clean imports
 
 import numpy as np
 
 from bokeh.embed import components
 from bokeh.layouts import column
-from bokeh.plotting import Figure
 from bokeh.models import ColumnDataSource, CustomJS
 from bokeh.models.widgets import Button
+from bokeh.plotting import Figure
 
 from scipy.stats import beta
 
@@ -47,9 +45,6 @@ def create_plot(Pi):
     plot.xaxis.axis_label = 'Probability of Heads (-)'
     plot.yaxis.axis_label = 'Probability Density (-)'
     plot.line('x', 'p', source=s1, line_width=4)
-
-    # patch = Patch(x='x', y='p', fill_color='#a6cee3')
-    # plot.add_glyph(s1, patch)
 
     # create button widget and JS callback
     with open('callback.js', 'r') as fp:
