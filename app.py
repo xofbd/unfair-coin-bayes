@@ -1,5 +1,5 @@
 from flask import Flask, redirect, render_template, request
-from bokeh_plot import create_plot
+from prob_dist import create_plot
 
 app = Flask(__name__)
 app.vars = {}
