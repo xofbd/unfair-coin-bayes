@@ -9,15 +9,15 @@ import numpy as np
 
 from bokeh.embed import components
 from bokeh.layouts import column
-from bokeh.plotting import Figure, show
-from bokeh.models import ColumnDataSource, CustomJS, Patch
-from bokeh.models.widgets import Button, DataTable, PreText, TableColumn
+from bokeh.plotting import Figure
+from bokeh.models import ColumnDataSource, CustomJS
+from bokeh.models.widgets import Button
 
 from scipy.stats import beta
 
 
 def create_plot(Pi):
-    """Plots the prior probability distribution of an unfair coin using Baye's
+    """Plots the prior probability distribution of an unfair coin using Bayes'
     theorem.
 
     Parameters
