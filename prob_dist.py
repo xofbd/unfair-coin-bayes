@@ -9,7 +9,7 @@ from bokeh.plotting import Figure
 from scipy.stats import beta
 
 
-def create_plot(Pi):
+def create_plot(Pi, output='show'):
     """Plots the prior probability distribution of an unfair coin using Bayes'
     theorem.
 
@@ -62,7 +62,6 @@ def create_plot(Pi):
     layout = column(widgets, plot)
 
     return components(layout)
-
 
 if __name__ == '__main__':
     script, div = create_plot(0.5)
