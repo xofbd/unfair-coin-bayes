@@ -1,8 +1,3 @@
-# TO DO:
-# 1.) fix html styles to be consistent
-# 2.) prettify stat text
-
-
 import numpy as np
 
 from bokeh.embed import components
@@ -65,6 +60,7 @@ def create_plot(Pi):
     # combine button and plot into one object and return components
     widgets = row(button, div)
     layout = column(widgets, plot)
+
     return components(layout)
 
 
