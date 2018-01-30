@@ -1,14 +1,14 @@
 # TO DO:
-# 2.) add updated heads and tails
-# 3.) add stats
-# 6.) clean imports
+# 1.) fix html styles to be consistent
+# 2.) prettify stat text
+
 
 import numpy as np
 
 from bokeh.embed import components
-from bokeh.layouts import column
+from bokeh.layouts import column, row
 from bokeh.models import ColumnDataSource, CustomJS
-from bokeh.models.widgets import Button
+from bokeh.models.widgets import Button, Div, PreText
 from bokeh.plotting import Figure
 
 from scipy.stats import beta
@@ -46,15 +46,25 @@ def create_plot(Pi):
     plot.yaxis.axis_label = 'Probability Density (-)'
     plot.line('x', 'p', source=s1, line_width=4)
 
+    # add current stats of simulation
+    text = """<b>True Probability:</b> {:g}<br>
+              <b>Number of Heads:</b> {:d}<br>
+              <b>Number of Tails:</b> {:d}<br>
+              <b>Mode:</b> {:s}<br>
+              <b>Variance: </b> {:g}
+    """.format(Pi, b - 1, a - 1, "any value", 1.0 / 12)
+    div = Div(text=text)
+
     # create button widget and JS callback
     with open('callback.js', 'r') as fp:
         code = fp.read()
 
-    callback = CustomJS(args=dict(s1=s1, s2=s2), code=code)
+    callback = CustomJS(args=dict(s1=s1, s2=s2, div=div), code=code)
     button = Button(label='Flip Coin', callback=callback)
 
     # combine button and plot into one object and return components
-    layout = column(button, plot)
+    widgets = row(button, div)
+    layout = column(widgets, plot)
     return components(layout)
 
 
