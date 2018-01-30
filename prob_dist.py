@@ -36,7 +36,7 @@ def create_plot(Pi, output='show'):
     s2 = ColumnDataSource(data=dict(params=[Pi, a, b]))
 
     # plot probability distribution
-    plot = Figure()
+    plot = Figure(title='Posterior Distribution')
     plot.xaxis.axis_label = 'Probability of Heads (-)'
     plot.yaxis.axis_label = 'Probability Density (-)'
     plot.line('x', 'p', source=s1, line_width=4)
