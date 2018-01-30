@@ -1,7 +1,7 @@
 # TO DO:
-# 2.) add updated heads and tails
-# 3.) add stats
-# 6.) clean imports
+# 1.) fix html styles to be consistent
+# 2.) prettify stat text
+
 
 import numpy as np
 
