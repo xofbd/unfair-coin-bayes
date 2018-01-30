@@ -44,6 +44,13 @@ for (i = 0; i < x.length; i++) {
     p[i] = Math.pow(x[i], a - 1)*Math.pow(1 - x[i], b - 1)/beta(a, b);
 }
 
+// update reported stats
+pre.text = `True Probability: ${params[0]} \
+\n Number of Heads: ${a-1} \
+\n Number of Tails: ${b-1} \
+\n Mode: ${(a-1)/(a+b-2)} \
+\n Variance: ${a*b/(Math.pow(a+b, 2)*(a+b+1))}`;
+
 // emit update to data sources
 s1.change.emit();
 s2.change.emit();
