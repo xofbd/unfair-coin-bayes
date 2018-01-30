@@ -3,3 +3,4 @@ gunicorn==19.3.0
 Jinja2==2.7.2
 numpy==1.9.2
 bokeh==0.12.6
+scipy=0.19.1
