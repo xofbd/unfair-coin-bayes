@@ -45,11 +45,16 @@ for (i = 0; i < x.length; i++) {
 }
 
 // update reported stats
-pre.text = `True Probability: ${params[0]} \n\
-Number of Heads: ${a-1} \n\
-Number of Tails: ${b-1} \n\
-Mode: ${(a-1)/(a+b-2)} \n\
-Variance: ${a*b/(Math.pow(a+b, 2)*(a+b+1))}`;
+var mode = (a-1)/(a+b-2);
+var variance = a*b/(Math.pow(a+b, 2)*(a+b+1));
+var mode_str = numeral(mode).format('0.[0000000]');
+var variance_str = numeral(variance).format('0.[0000000]');
+
+div.text = `<b>True Probability:</b> ${params[0]}<br> \n\
+<b>Number of Heads:</b> ${a-1}<br>\
+<b>Number of Tails:</b> ${b-1}<br> \n\
+<b>Mode:</b> ${mode_str}<br> \n\
+<b>Variance:</b> ${variance_str}`;
 
 // emit update to data sources
 s1.change.emit();
