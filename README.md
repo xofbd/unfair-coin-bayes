@@ -23,3 +23,6 @@ Make sure your app is ready to be deployed to Heroku by running Flask locally. T
 2.) `heroku create` or `heroku create app-name` where app-name is a custom app name <br>
 3.) `git push heroku master` <br>
 4.) `heroku open` or open the app online through your Heroku profile <br>
+
+## License
+This project is distributed under the MIT license. Please see `LICENSE` for more information.
