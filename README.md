@@ -3,8 +3,7 @@ This repository creates a web app that simulates the evolving probability distri
 
 ## Prerequisites
 You will need to have these Python packages installed: <br>
-`bokeh` <br>
-`Flask`<br>
+`bokeh, Flask` <br>
 You can easily download and install them by running `pip install package-name`, where "package-name" is the name of the desired package. You will also need a Heroku account and have installed the Heroku CLI. For more information on the Heroku CLI, go to https://devcenter.heroku.com/articles/heroku-cli#download-and-install.
 
 ## Running the app locally using Flask
