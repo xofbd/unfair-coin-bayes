@@ -1,5 +1,5 @@
 # Unfair Coin Bayesian Simulation
-This repository creates a web app that simulates the evolving probability distribution of an unfair coin to come up heads using Bayes's theorem. The prior distribution is a Beta distribution with both shape parameters set to one, resulting in a uniform distribution. This repository is ready to deploy a Bokeh figure on Heroku. <br>
+This repository creates a web app that simulates the evolving probability distribution of an unfair coin to come up heads using Bayes's theorem. The prior distribution is a Beta distribution with both shape parameters set to one, resulting in a uniform distribution. This repository is ready to deploy a Bokeh figure on Heroku. An exmaple of the app can be seen at https://tdi-ml-unfair-coin.herokuapp.com <br>
 
 ## Prerequisites
 You will need to have these Python packages installed: <br>
