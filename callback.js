@@ -35,11 +35,13 @@ var params = d2['params'];
 var ys = d3['y'];
 
 // update shape parameters
-var updated_params = flip_coin(params[0], params[1], params[2]);
-params[1] = updated_params[0];
-params[2] = updated_params[1];
-var a = params[1];
-var b = params[2];
+var updated_params = flip_coin(params[0], params[3], params[4]);
+params[3] = updated_params[0];
+params[4] = updated_params[1];
+var a_prior = params[1];
+var b_prior = params[2];
+var a = params[3];
+var b = params[4];
 
 // update probability and patch coordinates
 for (i = 0; i < x.length; i++) {
@@ -48,14 +50,14 @@ for (i = 0; i < x.length; i++) {
 }
 
 // update reported stats
-var mode = (a - 1)/(a + b- 2);
+var mode = (a - 1)/(a + b - 2);
 var variance = a*b/(Math.pow(a + b, 2)*(a + b + 1));
 var mode_str = numeral(mode).format('0.[0000000]');
 var variance_str = numeral(variance).format('0.[0000000]');
 
 div.text = `<b>True Probability:</b> ${params[0]}<br> \n\
-<b>Number of Heads:</b> ${a-1}<br>\
-<b>Number of Tails:</b> ${b-1}<br> \n\
+<b>Number of Heads:</b> ${a-a_prior}<br>\
+<b>Number of Tails:</b> ${b-b_prior}<br> \n\
 <b>Mode:</b> ${mode_str}<br> \n\
 <b>Variance:</b> ${variance_str}`;
 
