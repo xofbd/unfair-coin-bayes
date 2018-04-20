@@ -76,4 +76,4 @@ def create_plot(Pi, a_prior, b_prior):
     return components(layout)
 
 if __name__ == '__main__':
-    script, div = create_plot(0.5)
+    script, div = create_plot(0.5, 1, 1)
