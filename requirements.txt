@@ -2,5 +2,5 @@ Flask==1.0
 gunicorn==19.5.0
 Jinja2==2.10
 numpy==1.9.2
-bokeh==0.13.0
+bokeh==0.12.6
 scipy==0.19.1
