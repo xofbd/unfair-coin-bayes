@@ -10,7 +10,7 @@ You can easily download and install them by running `pip install package-name`, 
 You may want to run the app using Flask locally before deploying it to Heroku, especially if you have made any changes to the code. To run locally: <br>
 
 0.) clone repository: `git clone https://github.com/xofbd/unfair-coin-bayes` <br>
-1.) in the cloned directly, run `export FLASK_APP=app.py` in the command line. If you are using Windows, replace `export` with `set` <br>
+1.) in the cloned directory, run `export FLASK_APP=app.py` in the command line. If you are using Windows, replace `export` with `set` <br>
 2.) run `python -m flask run` <br>
 3.) open the link provided in the command line <br>
 For more information on running Flask, go to http://flask.pocoo.org/docs/0.12/quickstart/#a-minimal-application <br>
