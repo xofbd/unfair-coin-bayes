@@ -1,11 +1,9 @@
-import numpy as np
-
 from bokeh.embed import components
 from bokeh.layouts import column, row
 from bokeh.models import ColumnDataSource, CustomJS
 from bokeh.models.widgets import Button, Div, PreText
 from bokeh.plotting import Figure
-
+import numpy as np
 from scipy.stats import beta
 
 
