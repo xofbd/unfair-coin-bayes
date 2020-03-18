@@ -4,13 +4,8 @@ from prob_dist import create_plot
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def main():
-    return redirect('/index')
-
-
-@app.route('/index', methods=['GET'])
-def index():
     return render_template('index.html')
 
 
@@ -32,6 +27,7 @@ def plot():
                               params['b_prior'])
 
     return render_template('plot.html', script=script, div=div)
+
 
 if __name__ == '__main__':
     app.run(port=33507, debug=False)
