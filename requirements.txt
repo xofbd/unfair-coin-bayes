@@ -1,6 +1,6 @@
 Flask==1.0
 gunicorn==19.9.0
-Jinja2==2.10
+Jinja2==2.10.1
 numpy==1.15.4
 bokeh==1.0.4
 scipy==1.2
