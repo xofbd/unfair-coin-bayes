@@ -63,7 +63,7 @@ def create_plot(Pi, a_prior, b_prior):
     div = Div(text=text)
 
     # create button widget and JS callback
-    with open(os.path.join('app', 'static', 'callback.js'), 'r') as fp:
+    with open(os.path.join('flask_app', 'static', 'callback.js'), 'r') as fp:
         code = fp.read()
 
     callback = CustomJS(args=dict(s1=s1, s2=s2, s3=s3, div=div), code=code)
