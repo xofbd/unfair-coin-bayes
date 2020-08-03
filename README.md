@@ -11,7 +11,7 @@ You may want to run the app using Flask locally before deploying it to Heroku, e
 1. in the repository, run `make deploy`.
 1. open the link provided in the command line.
 
-If you using Windows, you can:
+If you are using Windows, you can:
 1. create and activate the virtual environment.
 1. `set FLASK_APP=app.py` in the command line.
 1. run `python -m flask run`.
