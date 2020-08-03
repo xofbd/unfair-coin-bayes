@@ -1,3 +1,5 @@
+import os
+
 from bokeh.embed import components
 from bokeh.layouts import column, row
 from bokeh.models import ColumnDataSource, CustomJS
@@ -61,7 +63,7 @@ def create_plot(Pi, a_prior, b_prior):
     div = Div(text=text)
 
     # create button widget and JS callback
-    with open('callback.js', 'r') as fp:
+    with open(os.path.join('app', 'static', 'callback.js'), 'r') as fp:
         code = fp.read()
 
     callback = CustomJS(args=dict(s1=s1, s2=s2, s3=s3, div=div), code=code)
@@ -72,6 +74,7 @@ def create_plot(Pi, a_prior, b_prior):
     layout = column(widgets, plot)
 
     return components(layout)
+
 
 if __name__ == '__main__':
     script, div = create_plot(0.5, 1, 1)
