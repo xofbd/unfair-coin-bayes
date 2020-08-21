@@ -15,7 +15,7 @@ def plot():
     params['probability'] = float(request.form['probability'])
     params['prior'] = request.form['prior']
 
-    # define distribution parameters based on chosen prior
+    # Define distribution parameters based on chosen prior
     if params['prior'] == 'uniform':
         params['a_prior'] = 1
         params['b_prior'] = 1
