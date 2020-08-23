@@ -61,6 +61,11 @@ div.text = `<b>True Probability:</b> ${params[0]}<br> \n\
 <b>Mode:</b> ${mode_str}<br> \n\
 <b>Variance:</b> ${variance_str}`;
 
+// rename title
+if (plot.title.text == "Prior Distribution") {
+    plot.title.text  = "Posterior Distribution";    
+}
+
 // emit update to data sources
 s1.change.emit();
 s2.change.emit();

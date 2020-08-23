@@ -47,7 +47,7 @@ def create_plot(Pi, a_prior, b_prior):
     s3 = ColumnDataSource(data=dict(x=xs, y=ys))
 
     # Plot probability distribution
-    plot = Figure(title='Posterior Distribution')
+    plot = Figure(title='Prior Distribution')
     plot.xaxis.axis_label = 'Probability of Heads (-)'
     plot.yaxis.axis_label = 'Probability Density (-)'
     plot.line('x', 'p', source=s1, line_width=4)
@@ -72,7 +72,8 @@ def create_plot(Pi, a_prior, b_prior):
     with open(os.path.join('flask_app', 'static', 'callback.js'), 'r') as fp:
         code = fp.read()
 
-    callback = CustomJS(args=dict(s1=s1, s2=s2, s3=s3, div=div), code=code)
+    callback = CustomJS(args=dict(s1=s1, s2=s2, s3=s3, plot=plot, div=div),
+                        code=code)
     button = Button(label='Flip Coin', callback=callback)
 
     # Combine button and plot into one object and return components
