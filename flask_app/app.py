@@ -11,20 +11,17 @@ def main():
 
 @app.route('/plot', methods=['POST'])
 def plot():
-    params = {}
-    params['probability'] = float(request.form['probability'])
-    params['prior'] = request.form['prior']
+    true_prob = float(request.form['probability'])
 
     # Define distribution parameters based on chosen prior
-    if params['prior'] == 'uniform':
-        params['a_prior'] = 1
-        params['b_prior'] = 1
+    if request.form['prior'] == 'uniform':
+        a_prior = 1
+        b_prior = 1
     else:
-        params['a_prior'] = int(request.form['a'])
-        params['b_prior'] = int(request.form['b'])
+        a_prior = int(request.form['a'])
+        b_prior = int(request.form['b'])
 
-    script, div = create_plot(params['probability'], params['a_prior'],
-                              params['b_prior'])
+    script, div = create_plot(true_prob, a_prior, b_prior)
 
     return render_template('plot.html', script=script, div=div)
 
