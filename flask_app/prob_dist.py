@@ -18,6 +18,12 @@ def create_plot(Pi, a_prior, b_prior):
     Pi : float
         Probability of the coin to come up heads.
 
+    a_prior : int
+        a parameter for the gamma prior distribution.
+
+    b_prior : int
+        b parameter for the gamma prior distribution.
+
     Returns
     -------
     Script and div components of the Bokeh document.
