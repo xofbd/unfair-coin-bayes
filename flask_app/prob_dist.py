@@ -29,58 +29,86 @@ def create_plot(Pi, a_prior, b_prior):
     Script and div components of the Bokeh document.
     """
 
-    # Generate prior probability distribution
+    s1, s2, s3 = generate_prior_data(Pi, a_prior, b_prior)
+    plot = create_figure(s1, s3)
+
+    div = create_div_stats(Pi, a_prior, b_prior)
+    widgets = create_coin_flip_button(s1, s2, s3, plot, div)
+    layout = column(widgets, plot)
+
+    return components(layout)
+
+
+def generate_prior_data(Pi, a_prior, b_prior):
+    """Return column data sources needed to generate prior distribution."""
+
+    # Prior probability distribution
     n = 1000
-    a = a_prior
-    b = b_prior
-
     x = np.linspace(0, 1, n)
-    dist = beta(a, b)
+    dist = beta(a_prior, b_prior)
     p = dist.pdf(x)
-
-    s1 = ColumnDataSource(data=dict(x=x, p=p))
-    s2 = ColumnDataSource(data=dict(params=[Pi, a_prior, b_prior, a, b]))
 
     # Arrays for the area under the curve patch
     xs = np.hstack((x, [1, 0]))
     ys = np.hstack((p, [0, 0]))
-    s3 = ColumnDataSource(data=dict(x=xs, y=ys))
 
-    # Plot probability distribution
+    # Create column data sources
+    s1 = ColumnDataSource(data={'x': x, 'p': p})
+    s2 = ColumnDataSource(data={'params':
+                                [Pi, a_prior, b_prior, a_prior, b_prior]})
+    s3 = ColumnDataSource(data={'x': xs, 'y': ys})
+
+    return s1, s2, s3
+
+
+def create_figure(s1, s3):
+    """Return figure object of probability distribution."""
     plot = Figure(title='Prior Distribution')
     plot.xaxis.axis_label = 'Probability of Heads (-)'
     plot.yaxis.axis_label = 'Probability Density (-)'
     plot.line('x', 'p', source=s1, line_width=4)
     plot.patch('x', 'y', source=s3, alpha=0.25, line_width=0)
 
-    # Calculate mode of prior
+    return plot
+
+
+def create_div_stats(Pi, a, b):
+    """Return div element with text of distribution statistics."""
+
+    # Calculate mode and variance probability based on prior.
     if a == 1 and b == 1:
         mode_str = "any value"
     else:
-        mode_str = str(round((a - 1.0) / (a + b - 2.0), 7))
+        # str(round((a - 1.0) / (a + b - 2.0), 7))
+        mode_str = f"{(a - 1.0) / (a + b - 2.0) :g}"
+
+    var = a * b / ((a + b + 1) * (a + b)**2)
 
     # Add current stats of simulation
-    text = """<b>True Probability:</b> {:g}<br>
-              <b>Number of Heads:</b> {:d}<br>
-              <b>Number of Tails:</b> {:d}<br>
-              <b>Mode:</b> {:s}<br>
-              <b>Variance: </b> {:g}
-    """.format(Pi, a - a_prior, b - b_prior, mode_str, 1.0 / 12)
-    div = Div(text=text)
+    text = f"""<b>True Probability:</b> {Pi :g}<br>
+              <b>Number of Heads:</b> 0<br>
+              <b>Number of Tails:</b> 0<br>
+              <b>Mode:</b> {mode_str}<br>
+              <b>Variance:</b> {var :g}"""
+
+    return Div(text=text)
+
+
+def create_coin_flip_button(s1, s2, s3, plot, div):
+    """Return Bokeh widget with coin flip button."""
 
     # Create button widget and JS callback
-    with open(os.path.join('flask_app', 'static', 'callback.js'), 'r') as fp:
-        code = fp.read()
+    with open(os.path.join('flask_app', 'static', 'callback.js'), 'r') as f:
+        code = f.read()
 
-    callback = CustomJS(args=dict(s1=s1, s2=s2, s3=s3, plot=plot, div=div),
-                        code=code)
+    args = {'s1': s1, 's2': s2, 's3': s3, 'plot': plot, 'div': div}
+    callback = CustomJS(args=args, code=code)
     button = Button(label='Flip Coin', callback=callback)
 
-    # Combine button and plot into one object and return components
+    # Combine button and div with stats into one row object
     widgets = row(button, div)
-    layout = column(widgets, plot)
 
-    return components(layout)
+    return widgets
 
 
 if __name__ == '__main__':
