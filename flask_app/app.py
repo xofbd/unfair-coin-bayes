@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, request
+from flask import Flask, render_template, request
 from flask_app.prob_dist import create_plot
 
 app = Flask(__name__)
