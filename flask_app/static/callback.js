@@ -11,7 +11,7 @@ function gamma(n) {
 
 // beta function
 function beta(a, b) {
-    return gamma(a)*gamma(b)/gamma(a + b);
+    return gamma(a) * gamma(b) / gamma(a + b);
 }
 
 // coin flip function
@@ -45,13 +45,13 @@ var b = params[4];
 
 // update probability and patch coordinates
 for (i = 0; i < x.length; i++) {
-    p[i] = Math.pow(x[i], a - 1)*Math.pow(1 - x[i], b - 1)/beta(a, b);
+    p[i] = Math.pow(x[i], a - 1) * Math.pow(1 - x[i], b - 1) / beta(a, b);
     ys[i] = p[i]
 }
 
 // update reported stats
-var mode = (a - 1)/(a + b - 2);
-var variance = a*b/(Math.pow(a + b, 2)*(a + b + 1));
+var mode = (a - 1) / (a + b - 2);
+var variance = a * b / (Math.pow(a + b, 2) * (a + b + 1));
 var mode_str = numeral(mode).format('0.[0000000]');
 var variance_str = numeral(variance).format('0.[0000000]');
 
