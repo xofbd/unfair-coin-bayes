@@ -17,6 +17,10 @@ If you are using Windows, you can:
 1. run `python -m flask run`.
 1. open the link in the command line.
 
+Alternatively, you can deploy using [Docker](https://www.docker.com/). You can run using `make docker-deploy` or
+1. `docker build -t unfair_coin_bayes .`
+1. `docker run -d -p 5000:5000 unfair_coin_bayes`
+
 ## Deploying to Heroku
 Make sure your app is ready to be deployed to Heroku by running Flask locally. To deploy to Heroku:
 
