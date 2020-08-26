@@ -10,9 +10,7 @@ venv: requirements.txt
 	touch venv
 
 deploy: venv
-	source venv/bin/activate && \
-	export FLASK_APP="flask_app/app.py" && \
-	python -m flask run
+	 bin/run.sh
 
 remove_venv:
 	rm -rf venv
