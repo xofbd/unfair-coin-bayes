@@ -13,7 +13,7 @@ You may want to run the app using Flask locally before deploying it to Heroku, e
 
 If you are using Windows, you can:
 1. create and activate the virtual environment.
-1. `set FLASK_APP="flask_app/app.py"` in the command line.
+1. `set FLASK_APP="unfair_coin_bayes/app.py"` in the command line.
 1. run `python -m flask run`.
 1. open the link in the command line.
 

@@ -1,4 +1,4 @@
-import os
+from pathlib import Path
 
 from bokeh.embed import components
 from bokeh.layouts import column, row
@@ -98,7 +98,7 @@ def create_coin_flip_button(s1, s2, s3, plot, div):
     """Return Bokeh widget with coin flip button."""
 
     # Create button widget and JS callback
-    with open(os.path.join('flask_app', 'static', 'callback.js'), 'r') as f:
+    with open(Path('unfair_coin_bayes') / 'static' / 'callback.js') as f:
         code = f.read()
 
     args = {'s1': s1, 's2': s2, 's3': s3, 'plot': plot, 'div': div}

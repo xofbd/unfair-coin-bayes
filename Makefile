@@ -14,10 +14,10 @@ deploy: venv
 
 docker-deploy:
 	docker build -t unfair_coin_bayes .
-	docker run -d -p 5000:5000 --name flask_app unfair_coin_bayes
+	docker run -d -p 5000:5000 --name coin_app unfair_coin_bayes
 
 docker-rm:
-	docker rm -f flask_app
+	docker rm -f coin_app
 
 remove_venv:
 	rm -rf venv
