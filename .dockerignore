@@ -1,3 +1,7 @@
-*.pyc
-venv
-.git
+# Exclude everything
+*
+
+# Only include the following
+!requirements.txt
+!bin
+!unfair_coin_bayes
