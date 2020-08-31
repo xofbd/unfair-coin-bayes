@@ -4,4 +4,4 @@ RUN pip install -r /tmp/requirements.txt
 COPY . /app
 WORKDIR /app
 EXPOSE 5000
-CMD bin/run.sh 0.0.0.0
+CMD ["bin/run.sh", "0.0.0.0"]
