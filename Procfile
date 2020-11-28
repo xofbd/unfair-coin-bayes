@@ -1,1 +1,1 @@
-web: gunicorn --pythonpath unfair_coin_bayes app:app
+web: bin/run_app prod
