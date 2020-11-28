@@ -1,4 +1,6 @@
+from bokeh import __version__
 from flask import Flask, render_template, request
+
 from unfair_coin_bayes.prob_dist import create_plot
 
 app = Flask(__name__)
@@ -23,7 +25,8 @@ def plot():
 
     script, div = create_plot(true_prob, a_prior, b_prior)
 
-    return render_template('plot.html', script=script, div=div)
+    return render_template('plot.html',
+                           script=script, div=div, version=__version__)
 
 
 if __name__ == '__main__':
