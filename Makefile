@@ -1,4 +1,4 @@
-SHELL:=/bin/bash
+SHELL := /bin/bash
 ACTIVATE_VENV := source venv/bin/activate
 
 .PHONY: all deploy-prod deploy-dev deploy-docker tests docker-rm clean
@@ -23,10 +23,10 @@ deploy-docker: docker-rm
 
 # Utility
 tests: venv
-	${ACTIVATE_VENV} && pytest -v tests
+	${ACTIVATE_VENV} && pytest -s tests
 
 docker-rm:
-	docker rm -f coin_app || echo "no container to remove"
+	-docker rm -f coin_app
 
 clean:
 	rm -rf venv
