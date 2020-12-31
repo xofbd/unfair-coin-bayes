@@ -18,7 +18,7 @@ def test_index(test_client):
     response = test_client.get('/')
 
     assert response.status_code == 200
-    assert b"Enter the probability an unfair coin turns up heads" in response.data
+    assert b"Enter the probability a coin turns up heads" in response.data
 
 
 def test_plot(test_client):
@@ -27,8 +27,8 @@ def test_plot(test_client):
     WHEN test client makes a POST request
     THEN request is satisfied with the expected data
     """
-    data = {'probability': 0.5, 'prior': 'uniform', 'a': 1, 'b': 1}
+    data = {'probability': 0.5, 'prior': 'Uniform', 'param_a': 1, 'param_b': 1}
     response = test_client.post('/plot', data=data)
 
     assert response.status_code == 200
-    assert b"Unfair Coin Simulation" in response.data
+    assert b"Coin flip simulation" in response.data

@@ -1,32 +1,47 @@
-from bokeh import __version__
-from flask import Flask, render_template, request
+import os
 
+from bokeh import __version__
+from flask import Flask, redirect, render_template, request, url_for
+
+from unfair_coin_bayes.forms import ProbabilityForm
 from unfair_coin_bayes.prob_dist import create_plot
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = os.urandom(32)
 
 
-@app.route('/', methods=['GET'])
+@app.route('/', methods=['GET', 'POST'])
 def main():
-    return render_template('index.html')
+    form = ProbabilityForm()
+
+    if form.validate_on_submit():
+        return redirect(url_for('plot'), code=307)
+
+    # The uniform prior is checked by default, hiding the beta distribution
+    # parameters. Thus, an invalidated form where beta prior had been checked
+    # would not show the selection. This insures the style for the prior
+    # parameters are set to be shown.
+    if form.prior.data == 'Beta':
+        style = '"display: inline;"'
+    else:
+        style = '"display: none;"'
+
+    return render_template('index.html', form=form, style=style)
 
 
 @app.route('/plot', methods=['POST'])
 def plot():
-    true_prob = float(request.form['probability'])
+    form = ProbabilityForm(request.form)
+    true_prob = form.probability.data
+    param_a = form.param_a.data
+    param_b = form.param_b.data
 
-    # Define distribution parameters based on chosen prior
-    if request.form['prior'] == 'uniform':
-        a_prior = 1
-        b_prior = 1
-    else:
-        a_prior = int(request.form['a'])
-        b_prior = int(request.form['b'])
-
-    script, div = create_plot(true_prob, a_prior, b_prior)
+    script, div = create_plot(true_prob, param_a, param_b)
 
     return render_template('plot.html',
-                           script=script, div=div, version=__version__)
+                           script=script,
+                           div=div,
+                           version=__version__)
 
 
 if __name__ == '__main__':
