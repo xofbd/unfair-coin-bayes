@@ -1,0 +1,2 @@
+[flake8]
+MAX_LINE_LENGTH = 88
