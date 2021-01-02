@@ -62,10 +62,15 @@ requirements.txt: .prod
 	${ACTIVATE_VENV} && pip freeze > $@
 
 # Utility
-.PHONY: tests docker-rm clean
+.PHONY: tests tests-unit tests-flake8 docker-rm clean
 
-tests: .dev
+tests: tests-unit tests-flake8
+
+tests-unit: .dev
 	${ACTIVATE_VENV} && pytest -s tests
+
+tests-flake8: .dev
+	${ACTIVATE_VENV} && flake8 unfair_coin_bayes tests
 
 docker-rm:
 	-docker rm -f coin_app
