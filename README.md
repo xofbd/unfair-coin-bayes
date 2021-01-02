@@ -2,13 +2,13 @@
 This repository creates a web app that simulates the evolving probability distribution of an unfair coin to come up heads using Bayes's theorem. The prior distribution is a Beta distribution with both shape parameters set to one, resulting in a uniform distribution. This repository is ready to deploy a web application using [Flask](https://flask.palletsprojects.com) and [Bokeh](https://bokeh.org) to Heroku. An example of the app can be seen at https://unfair-coin-bayes.herokuapp.com.
 
 ## Prerequisites
-All required Python packages can be found in the `requirements.txt` file. Additionally, the provided `Makefile` can be used to created a virtual environment by running `make venv`. You will also need a Heroku account and have installed the Heroku CLI. For more information on the Heroku CLI, go to https://devcenter.heroku.com/articles/heroku-cli#download-and-install.
+You will need either Python 3.7 or 3.8. All required Python packages can be found in the `requirements.txt` file. You will also need a Heroku account and have installed the Heroku CLI. For more information on the Heroku CLI, go to https://devcenter.heroku.com/articles/heroku-cli#download-and-install.
 
 ## Running the app locally using Flask
 You may want to run the app using Flask locally before deploying it to Heroku, especially if you have made any changes to the code. To run locally:
 
 1. clone the repository.
-1. in the repository, run `make deploy`.
+1. in the repository, run `make deploy-prod`.
 1. open the link provided in the command line.
 
 If you are using Windows, you can:
