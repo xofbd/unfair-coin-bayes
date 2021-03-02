@@ -1,7 +1,11 @@
 SHELL := /bin/bash
 ACTIVATE_VENV := source venv/bin/activate
-REQS := ${wildcard requirements/*.txt} requirements.txt
-OUTPUTS := .base .prod .dev
+DOCKER_IMAGE := unfair_coin_bayes
+DOCKER_CONTAINER := coin_app
+
+ins := ${wildcard requirements/*.in}
+reqs := ${ins:requirements/%.in=requirements/%.txt}
+outputs := .base .dev .prod
 
 .PHONY: all
 all: clean deploy-prod
@@ -16,8 +20,8 @@ deploy-prod: .prod
 	 ${ACTIVATE_VENV} && bin/run_app prod
 
 deploy-docker: docker-rm
-	docker build -t unfair_coin_bayes .
-	docker run -d -p 5000:5000 --name coin_app unfair_coin_bayes
+	docker build -t ${DOCKER_IMAGE} .
+	docker run -d -p 5000:5000 --name ${DOCKER_CONTAINER} ${DOCKER_IMAGE}
 
 # Virtual Environments
 .PHONY: base dev prod
@@ -27,38 +31,39 @@ venv:
 
 base: .base
 
-.base: requirements/base.txt venv
+.base: requirements/base.txt | venv
 	${ACTIVATE_VENV} && pip install -r $<
-	touch $@	
+	touch $@
 
 prod: .prod
 
-.prod: requirements/prod.txt .base venv
+.prod: requirements/prod.txt | .base
 	${ACTIVATE_VENV} && pip-sync $<
 	rm -rf .dev
 	touch $@
 
 dev: .dev
 
-.dev: requirements/dev.txt requirements/prod.txt venv
-	${ACTIVATE_VENV} && pip-sync ${filter-out venv, $^}
+.dev: requirements/prod.txt requirements/dev.txt | .base
+	${ACTIVATE_VENV} && pip-sync $^
 	rm -rf .prod
 	touch $@
 
 # Requirements
 .PHONY: requirements
 
-requirements: ${REQS}
+requirements: ${reqs}
 
-requirements/%.txt: requirements/%.in .base
+requirements/%.txt: requirements/%.in | .base
 	${ACTIVATE_VENV} && pip-compile $<
 
 requirements/dev.txt: requirements/prod.txt
 
 requirements/base.txt:
-	: # Avoid circular reference caused by venv rule
+ # Avoid circular reference caused by venv rule
+	:
 
-requirements.txt: .prod
+requirements.txt: | .prod
 	${ACTIVATE_VENV} && pip freeze > $@
 
 # Utility
@@ -67,15 +72,15 @@ requirements.txt: .prod
 tests: tests-unit tests-flake8
 
 tests-unit: .dev
-	${ACTIVATE_VENV} && pytest -s tests
+	-${ACTIVATE_VENV} && pytest -s tests
 
 tests-flake8: .dev
-	${ACTIVATE_VENV} && flake8 unfair_coin_bayes tests
+	-${ACTIVATE_VENV} && flake8 unfair_coin_bayes tests
 
 docker-rm:
-	-docker rm -f coin_app
+	-docker rm -f ${DOCKER_CONTAINER}
 
 clean:
 	rm -rf venv .pytest_cache
-	rm -f ${OUTPUTS}
+	rm -f ${outputs}
 	find . | grep __pycache__ | xargs rm -rf
