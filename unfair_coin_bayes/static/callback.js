@@ -16,7 +16,8 @@ function beta(a, b) {
 
 // coin flip function
 function flip_coin(Pi, a, b) {
-    prob = Math.random();
+    var prob = Math.random();
+
     if (prob < Pi) {
 	return [a + 1, b];
     }
@@ -46,7 +47,7 @@ var b = params[4];
 // update probability and patch coordinates
 for (i = 0; i < x.length; i++) {
     p[i] = Math.pow(x[i], a - 1) * Math.pow(1 - x[i], b - 1) / beta(a, b);
-    ys[i] = p[i]
+    ys[i] = p[i];
 }
 
 // update reported stats
