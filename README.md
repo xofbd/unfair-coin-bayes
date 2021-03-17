@@ -1,3 +1,9 @@
+[![Build Status](https://travis-ci.com/xofbd/unfair-coin-bayes.svg?branch=master)](https://travis-ci.com/xofbd/unfair-coin-bayes)
+![Python 3.7](https://badgen.net/badge/Python/3.7/purple)
+![Python 3.8](https://badgen.net/badge/Python/3.8/purple)
+[![GitHub release](https://img.shields.io/github/v/release/xofbd/unfair-coin-bayes.svg)](https://github.com/xofbd/unfair-coin-bayes/releases)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 # Unfair Coin Bayesian Simulation
 This repository creates a web app that simulates the evolving probability distribution of an unfair coin to come up heads using Bayes's theorem. The prior distribution is a Beta distribution with both shape parameters set to one, resulting in a uniform distribution. This repository is ready to deploy a web application using [Flask](https://flask.palletsprojects.com) and [Bokeh](https://bokeh.org) to Heroku. An example of the app can be seen at https://unfair-coin-bayes.herokuapp.com.
 
