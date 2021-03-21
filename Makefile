@@ -4,7 +4,7 @@ DOCKER_IMAGE := unfair_coin_bayes
 DOCKER_CONTAINER := coin_app
 
 ins := ${wildcard requirements/*.in}
-reqs := ${ins:requirements/%.in=requirements/%.txt}
+reqs := ${ins:requirements/%.in=requirements/%.txt} requirements.txt
 outputs := .base .dev .prod
 
 .PHONY: all
@@ -54,7 +54,7 @@ dev: .dev
 
 requirements: ${reqs}
 
-requirements/%.txt: requirements/%.in | .base
+requirements/%.txt: requirements/%.in requirements/constraints.txt | .base
 	${ACTIVATE_VENV} && pip-compile $<
 
 requirements/dev.txt: requirements/prod.txt
@@ -63,7 +63,7 @@ requirements/base.txt:
  # Avoid circular reference caused by venv rule
 	:
 
-requirements.txt: | .prod
+requirements.txt: requirements/prod.txt | .prod
 	${ACTIVATE_VENV} && pip freeze > $@
 
 # Utility
