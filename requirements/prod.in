@@ -4,4 +4,4 @@ bokeh==1.0.4
 Flask==1.0
 Flask-WTF==0.14.3
 gunicorn==20.0.4
-scipy==1.5.0
+scipy==1.5.4
