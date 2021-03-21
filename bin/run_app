@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 if [[ $1 == dev ]]; then
     export FLASK_APP=unfair_coin_bayes/app.py
     export FLASK_ENV=development
