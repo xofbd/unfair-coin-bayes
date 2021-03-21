@@ -1,6 +1,8 @@
-[![Build Status](https://travis-ci.com/xofbd/unfair-coin-bayes.svg?branch=master)](https://travis-ci.com/xofbd/unfair-coin-bayes)
 ![Python 3.7](https://badgen.net/badge/Python/3.7/purple)
 ![Python 3.8](https://badgen.net/badge/Python/3.8/purple)
+[![Build Status](https://travis-ci.com/xofbd/unfair-coin-bayes.svg?branch=master)](https://travis-ci.com/xofbd/unfair-coin-bayes)
+[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/xofbd/unfair-coin-bayes.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/xofbd/unfair-coin-bayes/context:python)
+[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/xofbd/unfair-coin-bayes.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/xofbd/unfair-coin-bayes/context:python)
 [![GitHub release](https://img.shields.io/github/v/release/xofbd/unfair-coin-bayes.svg)](https://github.com/xofbd/unfair-coin-bayes/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
