@@ -4,15 +4,31 @@
 #
 #    pip-compile requirements/dev.in
 #
-attrs==20.3.0             # via pytest
-flake8==3.8.4             # via -r requirements/dev.in
-iniconfig==1.1.1          # via pytest
-mccabe==0.6.1             # via flake8
-packaging==20.8           # via -c requirements/prod.txt, pytest
-pluggy==0.13.1            # via pytest
-py==1.10.0                # via pytest
-pycodestyle==2.6.0        # via flake8
-pyflakes==2.2.0           # via flake8
-pyparsing==2.4.7          # via -c requirements/prod.txt, packaging
-pytest==6.1.0             # via -r requirements/dev.in
-toml==0.10.2              # via pytest
+attrs==20.3.0
+    # via pytest
+flake8==3.8.4
+    # via -r requirements/dev.in
+iniconfig==1.1.1
+    # via pytest
+mccabe==0.6.1
+    # via flake8
+packaging==20.8
+    # via
+    #   -c requirements/prod.txt
+    #   pytest
+pluggy==0.13.1
+    # via pytest
+py==1.10.0
+    # via pytest
+pycodestyle==2.6.0
+    # via flake8
+pyflakes==2.2.0
+    # via flake8
+pyparsing==2.4.7
+    # via
+    #   -c requirements/prod.txt
+    #   packaging
+pytest==6.1.0
+    # via -r requirements/dev.in
+toml==0.10.2
+    # via pytest
