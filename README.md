@@ -1,9 +1,9 @@
-[![Build Status](https://travis-ci.com/xofbd/unfair-coin-bayes.svg?branch=master)](https://travis-ci.com/xofbd/unfair-coin-bayes)
-![Python](https://shields.io/badge/Python-3.6%20%7C%203.8%20%7C%203.9-blue)
-[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/xofbd/unfair-coin-bayes.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/xofbd/unfair-coin-bayes/context:python)
-[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/xofbd/unfair-coin-bayes.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/xofbd/unfair-coin-bayes/context:javascript)
+![Python](https://shields.io/badge/Python-3.7%20%7C%203.8%20%7C%203.9-blue)
 [![GitHub release](https://img.shields.io/github/v/release/xofbd/unfair-coin-bayes.svg)](https://github.com/xofbd/unfair-coin-bayes/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Build Status](https://travis-ci.com/xofbd/unfair-coin-bayes.svg?branch=master)](https://travis-ci.com/xofbd/unfair-coin-bayes)
+[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/xofbd/unfair-coin-bayes.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/xofbd/unfair-coin-bayes/context:python)
+[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/xofbd/unfair-coin-bayes.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/xofbd/unfair-coin-bayes/context:javascript)
 
 # Unfair Coin Bayesian Simulation
 This repository creates a web app that simulates the evolving probability distribution of an unfair coin to come up heads using Bayes's theorem. The prior distribution is a Beta distribution with both shape parameters set to one, resulting in a uniform distribution. This repository is ready to deploy a web application using [Flask](https://flask.palletsprojects.com) and [Bokeh](https://bokeh.org) to Heroku. An example of the app can be seen at https://unfair-coin-bayes.herokuapp.com.
