@@ -37,7 +37,7 @@ numpy==1.19.4
     #   scipy
 packaging==20.8
     # via bokeh
-pillow==8.1.2
+pillow==8.3.2
     # via
     #   -c requirements/constraints.txt
     #   bokeh
@@ -45,8 +45,10 @@ pyparsing==2.4.7
     # via packaging
 python-dateutil==2.8.1
     # via bokeh
-pyyaml==5.3.1
-    # via bokeh
+pyyaml==5.4.1
+    # via
+    #   -c requirements/constraints.txt
+    #   bokeh
 scipy==1.5.4
     # via -r requirements/prod.in
 six==1.15.0
