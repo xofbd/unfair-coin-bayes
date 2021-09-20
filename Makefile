@@ -11,7 +11,7 @@ outputs := .base .dev .prod
 all: clean deploy-prod
 
 # Deployment
-.PHONY: deploy-prod deploy-dev deploy-docker
+.PHONY: deploy-prod deploy-dev deploy-docker docker-image docker-stop
 
 deploy-dev: .dev
 	 ${ACTIVATE_VENV} && bin/run_app dev
@@ -19,9 +19,14 @@ deploy-dev: .dev
 deploy-prod: .prod
 	 ${ACTIVATE_VENV} && bin/run_app prod
 
-deploy-docker: docker-rm
+docker-image: requirements.txt
 	docker build -t ${DOCKER_IMAGE} .
-	docker run -d -p 5000:5000 --name ${DOCKER_CONTAINER} ${DOCKER_IMAGE}
+
+deploy-docker: docker-image
+	docker run --rm -d -p 5000:5000 --name ${DOCKER_CONTAINER} ${DOCKER_IMAGE}
+
+docker-stop:
+	docker container stop ${DOCKER_CONTAINER}
 
 # Virtual Environments
 .PHONY: base dev prod
@@ -76,9 +81,6 @@ tests-unit: .dev
 
 tests-flake8: .dev
 	-${ACTIVATE_VENV} && flake8 unfair_coin_bayes tests
-
-docker-rm:
-	-docker rm -f ${DOCKER_CONTAINER}
 
 clean:
 	rm -rf venv .pytest_cache
