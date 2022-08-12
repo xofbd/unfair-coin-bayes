@@ -31,13 +31,14 @@ markupsafe==1.1.1
     # via
     #   jinja2
     #   wtforms
-numpy==1.19.4
+numpy==1.23.1
     # via
+    #   -c requirements/constraints.txt
     #   bokeh
     #   scipy
 packaging==20.8
     # via bokeh
-pillow==8.3.2
+pillow==9.2.0
     # via
     #   -c requirements/constraints.txt
     #   bokeh
