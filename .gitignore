@@ -1,5 +1,7 @@
 *.pyc
-venv
 .base
+.coverage
 .dev
 .prod
+coverage.xml
+venv

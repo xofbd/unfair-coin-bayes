@@ -76,13 +76,13 @@ requirements.txt: requirements/prod.txt | .prod
 
 tests: tests-unit tests-flake8
 
-tests-unit: .dev
-	-${ACTIVATE_VENV} && pytest -s tests
+test-unit: .dev
+	${ACTIVATE_VENV} && pytest -s --cov=unfair_coin_bayes --cov-report=term --cov-report=xml
 
 tests-flake8: .dev
 	-${ACTIVATE_VENV} && flake8 unfair_coin_bayes tests
 
 clean:
-	rm -rf venv .pytest_cache
+	rm -rf venv .pytest_cache .coverage coverage.xml
 	rm -f ${outputs}
 	find . | grep __pycache__ | xargs rm -rf
