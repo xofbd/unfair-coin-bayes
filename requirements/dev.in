@@ -1,4 +1,5 @@
 -c prod.txt
 -c constraints.txt
 pytest==6.1.0
+pytest-cov==3.0.0
 flake8==3.8.4
