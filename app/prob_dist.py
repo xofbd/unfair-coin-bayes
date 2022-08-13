@@ -98,7 +98,7 @@ def create_coin_flip_button(s1, s2, s3, plot, div):
     """Return Bokeh widget with coin flip button."""
 
     # Create button widget and JS callback
-    with open(Path('unfair_coin_bayes') / 'static' / 'callback.js') as f:
+    with open(Path('app') / 'static' / 'callback.js') as f:
         code = f.read()
 
     args = {'s1': s1, 's2': s2, 's3': s3, 'plot': plot, 'div': div}

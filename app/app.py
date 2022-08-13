@@ -3,8 +3,8 @@ import os
 from bokeh import __version__
 from flask import Flask, redirect, render_template, request, url_for
 
-from unfair_coin_bayes.forms import ProbabilityForm
-from unfair_coin_bayes.prob_dist import create_plot
+from app.forms import ProbabilityForm
+from app.prob_dist import create_plot
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.urandom(32)

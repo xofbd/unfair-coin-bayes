@@ -4,4 +4,4 @@
 # Only include the following
 !requirements.txt
 !bin
-!unfair_coin_bayes
+!app
