@@ -1,6 +1,6 @@
 import pytest
 
-from unfair_coin_bayes.app import app
+from app.app import app
 
 
 @pytest.fixture

@@ -1,13 +1,13 @@
 #!/bin/bash
 
 if [[ $1 == dev ]]; then
-    export FLASK_APP=unfair_coin_bayes/app.py
+    export FLASK_APP=app/app.py
     export FLASK_ENV=development
     HOST=${2:-127.0.0.1}
 
     flask run --host=$HOST
 elif [[ $1 == prod ]]; then
-    gunicorn --pythonpath=unfair_coin_bayes app:app
+    gunicorn --pythonpath=app app:app
 else
     echo "First positional argument should either be dev or prod, not $1."
     exit 1
