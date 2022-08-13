@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 ACTIVATE_VENV := source venv/bin/activate
-DOCKER_IMAGE := unfair_coin_bayes
-DOCKER_CONTAINER := coin_app
+DOCKER_IMAGE := unfair-coin-bayes
+DOCKER_CONTAINER := app
 
 ins := ${wildcard requirements/*.in}
 reqs := ${ins:requirements/%.in=requirements/%.txt} requirements.txt
