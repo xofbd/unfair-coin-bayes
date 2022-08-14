@@ -15,7 +15,7 @@ def main():
     form = ProbabilityForm()
 
     if form.validate_on_submit():
-        return redirect(url_for('plot'), code=307)
+        return plot()
 
     # The uniform prior is checked by default, hiding the beta distribution
     # parameters. Thus, an invalidated form where beta prior had been checked
@@ -29,7 +29,6 @@ def main():
     return render_template('index.html', form=form, style=style)
 
 
-@app.route('/plot', methods=['POST'])
 def plot():
     form = ProbabilityForm(request.form)
     true_prob = form.probability.data
@@ -38,10 +37,12 @@ def plot():
 
     script, div = create_plot(true_prob, param_a, param_b)
 
-    return render_template('plot.html',
-                           script=script,
-                           div=div,
-                           version=__version__)
+    return render_template(
+        'plot.html',
+        script=script,
+        div=div,
+        version=__version__
+    )
 
 
 if __name__ == '__main__':
