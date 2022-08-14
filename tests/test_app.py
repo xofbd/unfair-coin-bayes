@@ -6,6 +6,8 @@ from app.app import app
 @pytest.fixture
 def test_client():
     with app.test_client() as test_client:
+        app.config['WTF_CSRF_ENABLED'] = False
+
         return test_client
 
 
@@ -28,7 +30,7 @@ def test_plot(test_client):
     THEN request is satisfied with the expected data
     """
     data = {'probability': 0.5, 'prior': 'Uniform', 'param_a': 1, 'param_b': 1}
-    response = test_client.post('/plot', data=data)
+    response = test_client.post('/', data=data)
 
     assert response.status_code == 200
     assert b"Coin flip simulation" in response.data
