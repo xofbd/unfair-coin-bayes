@@ -1,12 +1,13 @@
 import pytest
 
-from app.app import app
+from app import create_app
 
 
 @pytest.fixture
 def test_client():
+    app = create_app("testing")
+
     with app.test_client() as test_client:
-        app.config['WTF_CSRF_ENABLED'] = False
 
         return test_client
 
