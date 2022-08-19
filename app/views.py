@@ -1,16 +1,13 @@
-import os
-
 from bokeh import __version__
-from flask import Flask, redirect, render_template, request, url_for
+from flask import Blueprint, render_template, request
 
 from app.forms import ProbabilityForm
 from app.prob_dist import create_plot
 
-app = Flask(__name__)
-app.config['SECRET_KEY'] = os.urandom(32)
+bp = Blueprint("views", __name__)
 
 
-@app.route('/', methods=['GET', 'POST'])
+@bp.route('/', methods=['GET', 'POST'])
 def main():
     form = ProbabilityForm()
 
@@ -43,7 +40,3 @@ def plot():
         div=div,
         version=__version__
     )
-
-
-if __name__ == '__main__':
-    app.run()
