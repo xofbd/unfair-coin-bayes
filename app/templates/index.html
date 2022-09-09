@@ -1,17 +1,19 @@
 {% extends "base.html" %}
-{% from "_formhelpers.html" import render_field %}
+{% from "_macros.html" import render_field %}
 {% block head %}
   <script type="text/javascript" src="{{ url_for('static', filename='priorInputs.js') }}"> </script>
 {% endblock %}
 {% block title %}Bayesian Probability Coin Flip{% endblock %}
-{% block content %}    
-  <h2>Enter the probability a coin turns up heads</h2>
-  <div class="container-fluid">
+{% block content %}
+<div class="container">
+  <h2>Enter simulation data</h2>
     <form id="input" method="post" action="/" novalidate>
-      {{ form.hidden_tag() }}
-      <div class="form">
+      {{ form.csrf_token }}
+      <div class="form-group">
 	{{ render_field(form.probability) }}
-	<br>{{ form.prior.label }}<br>
+      </div>
+      <h4>Choose a prior</h4>
+      <div class="form-group">
 	{% for subfield in form.prior %}
 	  {% if "Uniform" == subfield.label.text %}
 	    {{ subfield(onchange="prepareUniform();") }}
@@ -26,9 +28,7 @@
 	  {{ render_field(form.param_b) }}
 	</div>
       </div>
-      <div id="submit">
-	{{ form.submit }}
-      </div>
+      <button type="submit" class="btn btn-primary">Plot</button>
     </form>
-  </div>
+</div>
 {% endblock %}
