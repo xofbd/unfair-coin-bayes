@@ -7,7 +7,7 @@ from app.prob_dist import create_plot
 bp = Blueprint("views", __name__)
 
 
-@bp.route('/', methods=['GET', 'POST'])
+@bp.route("/", methods=["GET", "POST"])
 def main():
     form = ProbabilityForm()
 
@@ -18,12 +18,12 @@ def main():
     # parameters. Thus, an invalidated form where beta prior had been checked
     # would not show the selection. This insures the style for the prior
     # parameters are set to be shown.
-    if form.prior.data == 'Beta':
+    if form.prior.data == "Beta":
         style = '"display: inline;"'
     else:
         style = '"display: none;"'
 
-    return render_template('index.html', form=form, style=style)
+    return render_template("index.html", form=form, style=style)
 
 
 def plot():
@@ -35,7 +35,7 @@ def plot():
     script, div = create_plot(true_prob, param_a, param_b)
 
     return render_template(
-        'plot.html',
+        "plot.html",
         script=script,
         div=div,
         version=__version__

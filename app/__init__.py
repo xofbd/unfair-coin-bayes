@@ -1,6 +1,6 @@
 from flask import Flask
 
-__version__ = '0.2.5'
+__version__ = "0.2.5"
 
 CONFIG_TO_OBJECT = {
     "dev": "config.ConfigDev",
