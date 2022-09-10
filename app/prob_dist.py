@@ -53,21 +53,21 @@ def generate_prior_data(Pi, a_prior, b_prior):
     ys = np.hstack((p, [0, 0]))
 
     # Create column data sources
-    s1 = ColumnDataSource(data={'x': x, 'p': p})
-    s2 = ColumnDataSource(data={'params':
+    s1 = ColumnDataSource(data={"x": x, "p": p})
+    s2 = ColumnDataSource(data={"params":
                                 [Pi, a_prior, b_prior, a_prior, b_prior]})
-    s3 = ColumnDataSource(data={'x': xs, 'y': ys})
+    s3 = ColumnDataSource(data={"x": xs, "y": ys})
 
     return s1, s2, s3
 
 
 def create_figure(s1, s3):
     """Return figure object of probability distribution."""
-    plot = Figure(title='Prior Distribution')
-    plot.xaxis.axis_label = 'Probability of Heads (-)'
-    plot.yaxis.axis_label = 'Probability Density (-)'
-    plot.line('x', 'p', source=s1, line_width=4)
-    plot.patch('x', 'y', source=s3, alpha=0.25, line_width=0)
+    plot = Figure(title="Prior Distribution")
+    plot.xaxis.axis_label = "Probability of Heads (-)"
+    plot.yaxis.axis_label = "Probability Density (-)"
+    plot.line("x", "p", source=s1, line_width=4)
+    plot.patch("x", "y", source=s3, alpha=0.25, line_width=0)
 
     return plot
 
@@ -98,12 +98,12 @@ def create_coin_flip_button(s1, s2, s3, plot, div):
     """Return Bokeh widget with coin flip button."""
 
     # Create button widget and JS callback
-    with open(Path('app') / 'static' / 'callback.js') as f:
+    with open(Path("app") / "static" / "callback.js") as f:
         code = f.read()
 
-    args = {'s1': s1, 's2': s2, 's3': s3, 'plot': plot, 'div': div}
+    args = {"s1": s1, "s2": s2, "s3": s3, "plot": plot, "div": div}
     callback = CustomJS(args=args, code=code)
-    button = Button(label='Flip Coin', callback=callback)
+    button = Button(label="Flip Coin", callback=callback)
 
     # Combine button and div with stats into one row object
     widgets = row(button, div)
@@ -111,5 +111,5 @@ def create_coin_flip_button(s1, s2, s3, plot, div):
     return widgets
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     script, div = create_plot(0.5, 1, 1)

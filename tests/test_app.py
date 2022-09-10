@@ -23,7 +23,7 @@ def test_index(test_client):
     WHEN it makes a GET request to /
     THEN the right page is returned with a form
     """
-    response = test_client.get('/')
+    response = test_client.get("/")
     soup = create_soup(response.data)
 
     assert response.status_code == 200
@@ -37,8 +37,8 @@ def test_plot(test_client):
     WHEN it makes a POST request
     THEN the visualization returned
     """
-    data = {'probability': 0.5, 'prior': 'Uniform', 'param_a': 1, 'param_b': 1}
-    response = test_client.post('/', data=data)
+    data = {"probability": 0.5, "prior": "Uniform", "param_a": 1, "param_b": 1}
+    response = test_client.post("/", data=data)
     soup = create_soup(response.data)
 
     assert response.status_code == 200
