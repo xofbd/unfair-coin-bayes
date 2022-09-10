@@ -36,6 +36,7 @@ venv:
 venv-base: .make.base
 
 .make.base: requirements/base.txt | venv
+	${ACTIVATE_VENV} && pip install pip==20.3.0
 	${ACTIVATE_VENV} && pip install -r $<
 	touch $@
 
