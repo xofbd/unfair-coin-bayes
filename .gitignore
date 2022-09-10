@@ -1,7 +1,5 @@
 *.pyc
-.base
 .coverage
-.dev
-.prod
+.make.*
 coverage.xml
 venv
