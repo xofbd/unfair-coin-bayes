@@ -81,6 +81,10 @@ test-unit: .make.dev
 test-lint: .make.dev
 	${ACTIVATE_VENV} && flake8 app tests
 
+.PHONY: tox
+tox: .make.dev
+	$(ACTIVATE_VENV) && tox
+
 clean:
-	rm -rf venv .pytest_cache .coverage coverage.xml .make.*
+	rm -rf venv .pytest_cache .coverage coverage.xml .make.* .tox
 	find . | grep __pycache__ | xargs rm -rf
