@@ -1,7 +1,8 @@
 ![Python](https://shields.io/badge/Python-3.8%20%7C%203.9-blue)
 [![GitHub release](https://img.shields.io/github/v/release/xofbd/unfair-coin-bayes.svg)](https://github.com/xofbd/unfair-coin-bayes/releases)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Build Status](https://travis-ci.com/xofbd/unfair-coin-bayes.svg?branch=master)](https://travis-ci.com/xofbd/unfair-coin-bayes)
+[![License: MIT](https://img.shields.io/github/license/xofbd/unfair-coin-bayes)](https://opensource.org/licenses/MIT)
+![CI](https://github.com/xofbd/unfair-coin-bayes/workflows/CI/badge.svg?branch=master)
+[![codecov](https://codecov.io/gh/xofbd/unfair-coin-bayes/branch/master/graph/badge.svg?token=Gal3jdSMI6)](https://codecov.io/gh/xofbd/unfair-coin-bayes)
 [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/xofbd/unfair-coin-bayes.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/xofbd/unfair-coin-bayes/context:python)
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/xofbd/unfair-coin-bayes.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/xofbd/unfair-coin-bayes/context:javascript)
 
