@@ -1,14 +1,39 @@
 #!/bin/bash
 
-if [[ $1 == dev ]]; then
-    #export FLASK_APP=app/app.py
-    export FLASK_ENV=development
-    HOST=${2:-127.0.0.1}
+set -eu
 
-    flask run --host=$HOST
-elif [[ $1 == prod ]]; then
-    gunicorn "wsgi:create_app('prod')"
-else
-    echo "First positional argument should either be dev or prod, not $1."
+usage() {
+  echo "Usage: $0 {dev|prod} [host]"
+}
+
+check_args() {
+  if (( $# != 1 && $# != 2 )); then
+    usage
     exit 1
-fi
+  fi
+}
+
+main() {
+  check_args "$@"
+  HOST=${2:-127.0.0.1}
+
+  case "$1" in
+    dev)
+      FLASK_ENV=development flask run --host="$HOST"
+      ;;
+    prod)
+      gunicorn --bind "$HOST" "wsgi:create_app('prod')"
+      ;;
+    -h | --help)
+      usage
+      exit 0
+      ;;
+    *)
+      usage "$@"
+      exit 1
+      ;;
+  esac
+}
+
+
+main "$@"
