@@ -3,5 +3,5 @@ COPY requirements.txt /tmp
 RUN pip install -r /tmp/requirements.txt
 COPY . /app
 WORKDIR /app
-EXPOSE 5000
-CMD ["bin/run_app", "dev", "0.0.0.0"]
+EXPOSE 8000
+CMD ["bin/run", "prod", "0.0.0.0"]

@@ -1,16 +1,16 @@
 SHELL := /bin/bash
 ACTIVATE_VENV := source venv/bin/activate
-DOCKER_IMAGE := unfair-coin-bayes
-DOCKER_CONTAINER := app
 
 ins := ${wildcard requirements/*.in}
 reqs := ${ins:requirements/%.in=requirements/%.txt} requirements.txt
+docker_image := unfair-coin-bayes
+docker_container := app
 
 .PHONY: all
 all: clean deploy-prod
 
 # Deployment
-.PHONY: deploy-prod deploy-dev deploy-docker docker-image docker-stop
+.PHONY: deploy-prod deploy-dev docker-image docker-run docker-stop
 
 deploy-dev: .make.dev
 	 ${ACTIVATE_VENV} && bin/run_app dev
@@ -19,13 +19,13 @@ deploy-prod: .make.prod
 	 ${ACTIVATE_VENV} && bin/run_app prod
 
 docker-image: requirements.txt
-	docker build -t ${DOCKER_IMAGE} .
+	docker build -t ${docker_image} .
 
-deploy-docker: docker-image
-	docker run --rm -d -p 5000:5000 --name ${DOCKER_CONTAINER} ${DOCKER_IMAGE}
+docker-run: docker-image
+	docker run --init --rm -d --publish 127.0.0.1:8000:8000 --name ${docker_container} ${docker_image}
 
 docker-stop:
-	docker container stop ${DOCKER_CONTAINER}
+	docker container stop ${docker_container}
 
 # Virtual Environments
 .PHONY: venv-base venv-dev venv-prod

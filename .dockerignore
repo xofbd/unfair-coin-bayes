@@ -5,3 +5,5 @@
 !requirements.txt
 !bin
 !app
+!wsgi.py
+!config.py
