@@ -10,29 +10,31 @@ docker_container := app
 all: clean deploy-prod
 
 # Deployment
-.PHONY: deploy-prod deploy-dev docker-image docker-run docker-stop
-
+.PHONY: deploy-dev
 deploy-dev: .make.dev
 	 ${ACTIVATE_VENV} && bin/run_app dev
 
+.PHONY: deploy-prod
 deploy-prod: .make.prod
 	 ${ACTIVATE_VENV} && bin/run_app prod
 
+.PHONY: docker-image
 docker-image: requirements.txt
 	docker build -t ${docker_image} .
 
+.PHONY: docker-run
 docker-run: docker-image
 	docker run --init --rm -d --publish 127.0.0.1:8000:8000 --name ${docker_container} ${docker_image}
 
+.PHONY: docker-stop
 docker-stop:
 	docker container stop ${docker_container}
 
 # Virtual Environments
-.PHONY: venv-base venv-dev venv-prod
-
 venv:
 	python3 -m venv $@
 
+.PHONY: venv-base
 venv-base: .make.base
 
 .make.base: requirements/base.txt | venv
@@ -40,6 +42,7 @@ venv-base: .make.base
 	${ACTIVATE_VENV} && pip install -r $<
 	touch $@
 
+.PHONY: venv-prod
 venv-prod: .make.prod
 
 .make.prod: requirements/prod.txt | .make.base
@@ -47,6 +50,7 @@ venv-prod: .make.prod
 	rm -rf .make.dev
 	touch $@
 
+.PHONY: venv-dev
 venv-dev: .make.dev
 
 .make.dev: requirements/prod.txt requirements/dev.txt | .make.base
@@ -72,16 +76,18 @@ requirements.txt: requirements/prod.txt | .make.prod
 	${ACTIVATE_VENV} && pip freeze > $@
 
 # Utility
-.PHONY: tests test-unit test-flake8 test-docker clean
-
+.PHONY: tests
 tests: test-unit test-lint test-docker
 
+.PHONY: test-unit
 test-unit: .make.dev
 	${ACTIVATE_VENV} && pytest -s --cov=app --cov-report=term --cov-report=xml
 
+.PHONY: test-lint
 test-lint: .make.dev
 	${ACTIVATE_VENV} && flake8 app tests
 
+.PHONY: test-docker
 test-docker:
 	tests/test-docker
 
@@ -89,6 +95,7 @@ test-docker:
 tox: .make.dev
 	$(ACTIVATE_VENV) && tox
 
+.PHONY: clean
 clean:
 	rm -rf venv .pytest_cache .coverage coverage.xml .make.* .tox
 	find . | grep __pycache__ | xargs rm -rf
