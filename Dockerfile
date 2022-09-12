@@ -1,4 +1,4 @@
-FROM python:3.8.6-slim
+FROM python:3.8.10-slim
 COPY requirements.txt /tmp
 RUN pip install -r /tmp/requirements.txt
 COPY . /app
