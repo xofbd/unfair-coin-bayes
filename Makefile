@@ -12,11 +12,11 @@ all: clean deploy-prod
 # Deployment
 .PHONY: deploy-dev
 deploy-dev: .make.dev
-	 ${ACTIVATE_VENV} && bin/run_app dev
+	 ${ACTIVATE_VENV} && bin/run dev
 
 .PHONY: deploy-prod
 deploy-prod: .make.prod
-	 ${ACTIVATE_VENV} && bin/run_app prod
+	 ${ACTIVATE_VENV} && bin/run prod
 
 .PHONY: docker-image
 docker-image: requirements.txt
