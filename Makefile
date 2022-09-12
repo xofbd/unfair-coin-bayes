@@ -72,15 +72,18 @@ requirements.txt: requirements/prod.txt | .make.prod
 	${ACTIVATE_VENV} && pip freeze > $@
 
 # Utility
-.PHONY: tests tests-unit tests-flake8 docker-rm clean
+.PHONY: tests test-unit test-flake8 test-docker clean
 
-tests: test-unit test-lint
+tests: test-unit test-lint test-docker
 
 test-unit: .make.dev
 	${ACTIVATE_VENV} && pytest -s --cov=app --cov-report=term --cov-report=xml
 
 test-lint: .make.dev
 	${ACTIVATE_VENV} && flake8 app tests
+
+test-docker:
+	tests/test-docker
 
 .PHONY: tox
 tox: .make.dev
