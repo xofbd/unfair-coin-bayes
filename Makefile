@@ -24,7 +24,14 @@ docker-image: requirements.txt
 
 .PHONY: docker-run
 docker-run: docker-image
-	docker run --init --rm -d --publish 127.0.0.1:8000:8000 --name ${docker_container} ${docker_image}
+	docker run \
+		--init \
+		--rm \
+		-d \
+		--publish 127.0.0.1:8000:8000 \
+		--env SECRET_KEY=$$(bin/set-secret-key --) \
+		--name ${docker_container} \
+		${docker_image}
 
 .PHONY: docker-stop
 docker-stop:

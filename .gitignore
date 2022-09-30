@@ -1,5 +1,6 @@
 *.pyc
 .coverage
+.env
 .make.*
 .tox
 coverage.xml
