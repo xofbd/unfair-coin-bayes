@@ -19,7 +19,7 @@ deploy-prod: .make.prod
 	 $(ACTIVATE_VENV) && bin/run prod
 
 .PHONY: docker-image
-docker-image: requirements.txt
+docker-image:
 	docker build -t $(docker_image) .
 
 .PHONY: docker-run
