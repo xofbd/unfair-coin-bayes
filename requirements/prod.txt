@@ -4,7 +4,7 @@
 #
 #    pip-compile requirements/prod.in
 #
-bokeh==1.0.4
+bokeh==1.4.0
     # via -r requirements/prod.in
 click==7.1.2
     # via
@@ -12,7 +12,7 @@ click==7.1.2
     #   flask
 flask-wtf==0.14.3
     # via -r requirements/prod.in
-flask==1.0
+flask==1.1.4
     # via
     #   -r requirements/prod.in
     #   flask-wtf

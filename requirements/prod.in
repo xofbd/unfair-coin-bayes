@@ -1,7 +1,7 @@
 -c base.txt
 -c constraints.txt
-bokeh==1.0.4
-Flask==1.0
+bokeh==1.4.0
+Flask==1.1.4
 Flask-WTF==0.14.3
 gunicorn==20.0.4
 python-dotenv==0.21.0
