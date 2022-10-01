@@ -5,7 +5,7 @@ from app import create_app
 
 
 def create_soup(html):
-    return BeautifulSoup(html)
+    return BeautifulSoup(html, "html.parser")
 
 
 @pytest.fixture
